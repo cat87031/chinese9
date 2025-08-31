@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>赤腳國王 - 第九課教學資源</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft JhengHei", "Heiti TC", "LiHei Pro", sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .quick-nav {
+            position: sticky;
+            top: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 100;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .nav-btn {
+            padding: 8px 15px;
+            background: linear-gradient(to right, #4CAF50, #2E7D32);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #4CAF50;
+            background: linear-gradient(to right, #E8F5E9, #C8E6C9);
+            padding: 20px;
+            border-radius: 15px;
+        }
+        
+        h1 {
+            color: #2E7D32;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: #388E3C;
+            margin: 25px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #C8E6C9;
+        }
+        
+        h3 {
+            color: #4CAF50;
+            margin: 20px 0 10px;
+        }
+        
+        .lesson-content {
+            background: #E8F5E9;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            line-height: 2.2;
+            font-size: 1.3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .bopomofo {
+            font-size: 0.8em;
+            color: #FF5722;
+            vertical-align: top;
+            margin-right: 2px;
+        }
+        
+        .vocabulary-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 18px;
+            margin: 25px 0;
+        }
+        
+        .vocabulary-item {
+            background: linear-gradient(to bottom, #E8F5E9, #C8E6C9);
+            padding: 18px 12px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid #A5D6A7;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .vocabulary-item:hover, .vocabulary-item.active {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            background: linear-gradient(to bottom, #C8E6C9, #A5D6A7);
+            border-color: #4CAF50;
+        }
+        
+        .vocabulary-item .bopomofo-small {
+            display: block;
+            font-size: 0.9rem;
+            color: #FF5722;
+            margin-top: 5px;
+        }
+        
+        .similar-characters, .polyphonic-characters {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+        
+        .character-group {
+            background: #F1F8E9;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .character-group:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+        
+        .character-group h3 {
+            text-align: center;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #C8E6C9;
+            color: #2E7D32;
+        }
+        
+        .character-group ul {
+            list-style-type: none;
+            padding-left: 10px;
+            margin-top: 10px;
+        }
+        
+        .character-group li {
+            padding: 8px 0;
+            font-size: 1.2rem;
+            border-bottom: 1px dashed #C8E6C9;
+        }
+        
+        .character-group li:last-child {
+            border-bottom: none;
+        }
+        
+        .character-detail {
+            display: none;
+            background: linear-gradient(to bottom, #E8F5E9, #F1F8E9);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border: 2px solid #A5D6A7;
+        }
+        
+        .character-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+        
+        .character-large {
+            font-size: 140px;
+            line-height: 1;
+            color: #2E7D32;
+            text-shadow: 3px 3px 5px rgba(0,0,0,0.1);
+            margin-right: 30px;
+        }
+        
+        .character-info-basic {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        
+        .character-info-basic p {
+            margin: 10px 0;
+            font-size: 1.2rem;
+        }
+        
+        .character-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+        
+        .info-section {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        
+        .info-section h3 {
+            color: #2E7D32;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-section h3 i {
+            margin-right: 10px;
+            color: #4CAF50;
+        }
+        
+        .info-section ul {
+            padding-left: 25px;
+            margin-top: 15px;
+            list-style-type: none;
+        }
+        
+        .info-section li {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .external-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .external-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(to right, #4CAF50, #2E7D32);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .external-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            background: linear-gradient(to right, #2E7D32, #1B5E20);
+        }
+        
+        .download-btn {
+            display: block;
+            width: 250px;
+            margin: 40px auto;
+            padding: 15px;
+            background: linear-gradient(to right, #4CAF50, #2E7D32);
+            color: white;
+            text-align: center;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            background: linear-gradient(to right, #2E7D32, #1B5E20);
+        }
+        
+        .highlight {
+            background: #FFF9C4;
+            padding: 0 5px;
+            border-radius: 4px;
+        }
+        
+        .section-icon {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 50%;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .similar-characters .bopomofo, .polyphonic-characters .bopomofo {
+            font-size: 0.7em;
+        }
+        
+        @media (max-width: 900px) {
+            .character-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .character-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .character-large {
+                margin-right: 0;
+                margin-bottom: 20px;
+                font-size: 100px;
+            }
+            
+            .similar-characters, .polyphonic-characters {
+                grid-template-columns: 1fr;
+            }
+            
+            .external-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .quick-nav {
+                position: static;
+                margin-bottom: 20px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .vocabulary-list {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+            
+            .character-large {
+                font-size: 80px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .lesson-content {
+                font-size: 1.1rem;
+                padding: 15px;
+            }
+            
+            .nav-btn {
+                padding: 6px 10px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="quick-nav">
+            <button class="nav-btn" onclick="scrollToSection('lesson-content')">課文內容</button>
+            <button class="nav-btn" onclick="scrollToSection('vocabulary')">生字總表</button>
+            <button class="nav-btn" onclick="scrollToSection('similar-characters')">形近字比較</button>
+            <button class="nav-btn" onclick="scrollToSection('polyphonic-characters')">多音字比較</button>
+        </div>
+        
+        <header>
+            <h1><i class="fas fa-crown"></i> 赤腳國王</h1>
+            <h2>第九課教學資源</h2>
+        </header>
+        
+        <section id="lesson-content">
+            <h2><span class="section-icon">1</span> 課文內容</h2>
+            <div class="lesson-content">
+                <p>第<span class="bopomofo">ㄉㄧˋ</span>九<span class="bopomofo">ㄐㄧㄡˇ</span>課<span class="bopomofo">ㄎㄜˋ</span>　赤<span class="bopomofo">ㄔˋ</span>腳<span class="bopomofo">ㄐㄧㄠˇ</span>國<span class="bopomofo">ㄍㄨㄛˊ</span>王<span class="bopomofo">ㄨㄤˊ</span></p>
+                <br>
+                <p>　　赤<span class="bopomofo">ㄔˋ</span>腳<span class="bopomofo">ㄐㄧㄠˇ</span>國<span class="bopomofo">ㄍㄨㄛˊ</span>裡<span class="bopomofo">ㄌㄧˇ</span>，人<span class="bopomofo">ㄖㄣˊ</span>人<span class="bopomofo">ㄖㄣˊ</span>都<span class="bopomofo">ㄉㄡ</span>打<span class="bopomofo">ㄉㄚˇ</span>赤<span class="bopomofo">ㄔˋ</span>腳<span class="bopomofo">ㄐㄧㄠˇ</span>。夏<span class="bopomofo">ㄒㄧㄚˋ</span>天<span class="bopomofo">ㄊㄧㄢ</span>，地<span class="bopomofo">ㄉㄧˋ</span>面<span class="bopomofo">ㄇㄧㄢˋ</span>又<span class="bopomofo">ㄧㄡˋ</span>熱<span class="bopomofo">ㄖㄜˋ</span>又<span class="bopomofo">ㄧㄡˋ</span>燙<span class="bopomofo">ㄊㄤˋ</span>，大<span class="bopomofo">ㄉㄚˋ</span>家<span class="bopomofo">ㄐㄧㄚ</span>只<span class="bopomofo">ㄓˇ</span>好<span class="bopomofo">ㄏㄠˇ</span>不<span class="bopomofo">ㄅㄨˊ</span>停<span class="bopomofo">ㄊㄧㄥˊ</span>的<span class="bopomofo">˙ㄉㄜ</span>跳<span class="bopomofo">ㄊㄧㄠˋ</span>！冬<span class="bopomofo">ㄉㄨㄥ</span>天<span class="bopomofo">ㄊㄧㄢ</span>到<span class="bopomofo">ㄉㄠˋ</span>了<span class="bopomofo">˙ㄌㄜ</span>，腳<span class="bopomofo">ㄐㄧㄠˇ</span>也<span class="bopomofo">ㄧㄝˇ</span>最<span class="bopomofo">ㄗㄨㄟˋ</span>先<span class="bopomofo">ㄒㄧㄢ</span>知<span class="bopomofo">ㄓ</span>道<span class="bopomofo">ㄉㄠˋ</span>。</p>
+                <p>　　赤<span class="bopomofo">ㄔˋ</span>腳<span class="bopomofo">ㄐㄧㄠˇ</span>國<span class="bopomofo">ㄍㄨㄛˊ</span>王<span class="bopomofo">ㄨㄤˊ</span>住<span class="bopomofo">ㄓㄨˋ</span>在<span class="bopomofo">ㄗㄞˋ</span>王<span class="bopomofo">ㄨㄤˊ</span>宮<span class="bopomofo">ㄍㄨㄥ</span>裡<span class="bopomofo">ㄌㄧˇ</span>，夏<span class="bopomofo">ㄒㄧㄚˋ</span>天<span class="bopomofo">ㄊㄧㄢ</span>涼<span class="bopomofo">ㄌㄧㄤˊ</span>快<span class="bopomofo">ㄎㄨㄞˋ</span>，冬<span class="bopomofo">ㄉㄨㄥ</span>天<span class="bopomofo">ㄊㄧㄢ</span>腳<span class="bopomofo">ㄐㄧㄠˇ</span>踩<span class="bopomofo">ㄘㄞˇ</span>在<span class="bopomofo">ㄗㄞˋ</span>地<span class="bopomofo">ㄉㄧˋ</span>毯<span class="bopomofo">ㄊㄢˇ</span>上<span class="bopomofo">ㄕㄤˋ</span>，十<span class="bopomofo">ㄕˊ</span>分<span class="bopomofo">ㄈㄣ</span>暖<span class="bopomofo">ㄋㄨㄢˇ</span>和<span class="bopomofo">ㄏㄜˊ</span>。外<span class="bopomofo">ㄨㄞˋ</span>出<span class="bopomofo">ㄔㄨ</span>時<span class="bopomofo">ㄕˊ</span>，國<span class="bopomofo">ㄍㄨㄛˊ</span>王<span class="bopomofo">ㄨㄤˊ</span>都<span class="bopomofo">ㄉㄡ</span>坐<span class="bopomofo">ㄗㄨㄛˋ</span>在<span class="bopomofo">ㄗㄞˋ</span>馬<span class="bopomofo">ㄇㄚˇ</span>車<span class="bopomofo">ㄔㄜ</span>裡<span class="bopomofo">ㄌㄧˇ</span>，他<span class="bopomofo">ㄊㄚ</span>的<span class="bopomofo">˙ㄉㄜ</span>腳<span class="bopomofo">ㄐㄧㄠˇ</span>從<span class="bopomofo">ㄘㄨㄥˊ</span>來<span class="bopomofo">ㄌㄞˊ</span>沒<span class="bopomofo">ㄇㄟˊ</span>有<span class="bopomofo">ㄧㄡˇ</span>踩<span class="bopomofo">ㄘㄞˇ</span>過<span class="bopomofo">ㄍㄨㄛˋ</span>土<span class="bopomofo">ㄊㄨˇ</span>地<span class="bopomofo">ㄉㄧˋ</span>。</p>
+                <p>　　有<span class="bopomofo">ㄧㄡˇ</span>一<span class="bopomofo">ㄧ</span>天<span class="bopomofo">ㄊㄧㄢ</span>，在<span class="bopomofo">ㄗㄞˋ</span>外<span class="bopomofo">ㄨㄞˋ</span>面<span class="bopomofo">ㄇㄧㄢˋ</span>的<span class="bopomofo">˙ㄉㄜ</span>路<span class="bopomofo">ㄌㄨˋ</span>上<span class="bopomofo">ㄕㄤˋ</span>，馬<span class="bopomofo">ㄇㄚˇ</span>車<span class="bopomofo">ㄔㄜ</span>壞<span class="bopomofo">ㄏㄨㄞˋ</span>了<span class="bopomofo">˙ㄌㄜ</span>。國<span class="bopomofo">ㄍㄨㄛˊ</span>王<span class="bopomofo">ㄨㄤˊ</span>只<span class="bopomofo">ㄓˇ</span>能<span class="bopomofo">ㄋㄥˊ</span>光<span class="bopomofo">ㄍㄨㄤ</span>著<span class="bopomofo">˙ㄓㄜ</span>腳<span class="bopomofo">ㄐㄧㄠˇ</span>走<span class="bopomofo">ㄗㄡˇ</span>回<span class="bopomofo">ㄏㄨㄟˊ</span>家<span class="bopomofo">ㄐㄧㄚ</span>，才<span class="bopomofo">ㄘㄞˊ</span>知<span class="bopomofo">ㄓ</span>道<span class="bopomofo">ㄉㄠˋ</span>外<span class="bopomofo">ㄨㄞˋ</span>面<span class="bopomofo">ㄇㄧㄢˋ</span>都<span class="bopomofo">ㄉㄡ</span>是<span class="bopomofo">ㄕˋ</span>難<span class="bopomofo">ㄋㄢˊ</span>走<span class="bopomofo">ㄗㄡˇ</span>的<span class="bopomofo">˙ㄉㄜ</span>路<span class="bopomofo">ㄌㄨˋ</span>。</p>
+                <p>　　回<span class="bopomofo">ㄏㄨㄟˊ</span>到<span class="bopomofo">ㄉㄠˋ</span>宮<span class="bopomofo">ㄍㄨㄥ</span>裡<span class="bopomofo">ㄌㄧˇ</span>，他<span class="bopomofo">ㄊㄚ</span>想<span class="bopomofo">ㄒㄧㄤˇ</span>：要<span class="bopomofo">ㄧㄠˋ</span>是<span class="bopomofo">ㄕˋ</span>大<span class="bopomofo">ㄉㄚˋ</span>家<span class="bopomofo">ㄐㄧㄚ</span>都<span class="bopomofo">ㄉㄡ</span>能<span class="bopomofo">ㄋㄥˊ</span>走<span class="bopomofo">ㄗㄡˇ</span>在<span class="bopomofo">ㄗㄞˋ</span>地<span class="bopomofo">ㄉㄧˋ</span>毯<span class="bopomofo">ㄊㄢˇ</span>上<span class="bopomofo">ㄕㄤˋ</span>，一<span class="bopomofo">ㄧ</span>定<span class="bopomofo">ㄉㄧㄥˋ</span>會<span class="bopomofo">ㄏㄨㄟˋ</span>更<span class="bopomofo">ㄍㄥˋ</span>快<span class="bopomofo">ㄎㄨㄞˋ</span>樂<span class="bopomofo">ㄌㄜˋ</span>，但<span class="bopomofo">ㄉㄢˋ</span>是<span class="bopomofo">ㄕˋ</span>那<span class="bopomofo">ㄋㄚˋ</span>得<span class="bopomofo">ㄉㄟˇ</span>做<span class="bopomofo">ㄗㄨㄛˋ</span>出<span class="bopomofo">ㄔㄨ</span>多<span class="bopomofo">ㄉㄨㄛ</span>少<span class="bopomofo">ㄕㄠˇ</span>地<span class="bopomofo">ㄉㄧˋ</span>毯<span class="bopomofo">ㄊㄢˇ</span>哪<span class="bopomofo">˙ㄋㄚ</span>！</p>
+                <p>　　國<span class="bopomofo">ㄍㄨㄛˊ</span>王<span class="bopomofo">ㄨㄤˊ</span>請<span class="bopomofo">ㄑㄧㄥˇ</span>大<span class="bopomofo">ㄉㄚˋ</span>家<span class="bopomofo">ㄐㄧㄚ</span>想<span class="bopomofo">ㄒㄧㄤˇ</span>想<span class="bopomofo">ㄒㄧㄤˇ</span>可<span class="bopomofo">ㄎㄜˇ</span>以<span class="bopomofo">ㄧˇ</span>怎<span class="bopomofo">ㄗㄣˇ</span>麼<span class="bopomofo">˙ㄇㄜ</span>做<span class="bopomofo">ㄗㄨㄛˋ</span>。幾<span class="bopomofo">ㄐㄧˇ</span>個<span class="bopomofo">˙ㄍㄜ</span>小<span class="bopomofo">ㄒㄧㄠˇ</span>朋<span class="bopomofo">ㄆㄥˊ</span>友<span class="bopomofo">ㄧㄡˇ</span>玩<span class="bopomofo">ㄨㄢˊ</span>踩<span class="bopomofo">ㄘㄞˇ</span>高<span class="bopomofo">ㄍㄠ</span>蹺<span class="bopomofo">ㄑㄧㄠ</span>時<span class="bopomofo">ㄕˊ</span>，想<span class="bopomofo">ㄒㄧㄤˇ</span>到<span class="bopomofo">ㄉㄠˋ</span>「隨<span class="bopomofo">ㄙㄨㄟˊ</span>身<span class="bopomofo">ㄕㄣ</span>地<span class="bopomofo">ㄉㄧˋ</span>毯<span class="bopomofo">ㄊㄢˇ</span>」的<span class="bopomofo">˙ㄉㄜ</span>主<span class="bopomofo">ㄓㄨˇ</span>意<span class="bopomofo">ㄧˋ</span>，不<span class="bopomofo">ㄅㄨˋ</span>管<span class="bopomofo">ㄍㄨㄢˇ</span>走<span class="bopomofo">ㄗㄡˇ</span>到<span class="bopomofo">ㄉㄠˋ</span>哪<span class="bopomofo">ㄋㄚˇ</span>裡<span class="bopomofo">ㄌㄧˇ</span>，地<span class="bopomofo">ㄉㄧˋ</span>毯<span class="bopomofo">ㄊㄢˇ</span>都<span class="bopomofo">ㄉㄡ</span>跟<span class="bopomofo">ㄍㄣ</span>在<span class="bopomofo">ㄗㄞˋ</span>腳<span class="bopomofo">ㄐㄧㄠˇ</span>上<span class="bopomofo">ㄕㄤˋ</span>。</p>
+                <p>　　他<span class="bopomofo">ㄊㄚ</span>們<span class="bopomofo">˙ㄇㄣ</span>把<span class="bopomofo">ㄅㄚˇ</span>這<span class="bopomofo">ㄓㄜˋ</span>個<span class="bopomofo">˙ㄍㄜ</span>想<span class="bopomofo">ㄒㄧㄤˇ</span>法<span class="bopomofo">ㄈㄚˇ</span>，告<span class="bopomofo">ㄍㄠˋ</span>訴<span class="bopomofo">ㄙㄨˋ</span>了<span class="bopomofo">˙ㄌㄜ</span>國<span class="bopomofo">ㄍㄨㄛˊ</span>王<span class="bopomofo">ㄨㄤˊ</span>，於<span class="bopomofo">ㄩˊ</span>是<span class="bopomofo">ㄕˋ</span>，國<span class="bopomofo">ㄍㄨㄛˊ</span>王<span class="bopomofo">ㄨㄤˊ</span>叫<span class="bopomofo">ㄐㄧㄠˋ</span>人<span class="bopomofo">ㄖㄣˊ</span>做<span class="bopomofo">ㄗㄨㄛˋ</span>了<span class="bopomofo">˙ㄌㄜ</span>好<span class="bopomofo">ㄏㄠˇ</span>多<span class="bopomofo">ㄉㄨㄛ</span>好<span class="bopomofo">ㄏㄠˇ</span>多<span class="bopomofo">ㄉㄨㄛ</span>「隨<span class="bopomofo">ㄙㄨㄟˊ</span>身<span class="bopomofo">ㄕㄣ</span>地<span class="bopomofo">ㄉㄧˋ</span>毯<span class="bopomofo">ㄊㄢˇ</span>」。從<span class="bopomofo">ㄘㄨㄥˊ</span>此<span class="bopomofo">ㄘˇ</span>，大<span class="bopomofo">ㄉㄚˋ</span>家<span class="bopomofo">ㄐㄧㄚ</span>的<span class="bopomofo">˙ㄉㄜ</span>腳<span class="bopomofo">ㄐㄧㄠˇ</span>都<span class="bopomofo">ㄉㄡ</span>能<span class="bopomofo">ㄋㄥˊ</span>踩<span class="bopomofo">ㄘㄞˇ</span>在<span class="bopomofo">ㄗㄞˋ</span>舒<span class="bopomofo">ㄕㄨ</span>服<span class="bopomofo">ㄈㄨˊ</span>的<span class="bopomofo">˙ㄉㄜ</span>地<span class="bopomofo">ㄉㄧˋ</span>毯<span class="bopomofo">ㄊㄢˇ</span>上<span class="bopomofo">ㄕㄤˋ</span>了<span class="bopomofo">˙ㄌㄜ</span>。</p>
+            </div>
+        </section>
+        
+        <section id="vocabulary">
+            <h2><span class="section-icon">2</span> 生字總表</h2>
+            <div class="vocabulary-list">
+                <div class="vocabulary-item" onclick="showCharacterDetail('赤', 'ㄔˋ', '赤', 7, '獨體字', this)">
+                    赤 <span class="bopomofo-small">ㄔˋ</span>
+                </div>
+                <div class="vocabulary-item" onclick="showCharacterDetail('國', 'ㄍㄨㄛˊ', '囗', 11, '全包圍結構', this)">
+                    國 <span class="bopomofo-small">ㄍㄨㄛˊ</span>
+                </div>
+                <div class="vocabulary-item" onclick="showCharacterDetail('熱', 'ㄖㄜˋ', '火', 15, '上下結構', this)">
+                    熱 <span class="bopomofo-small">ㄖㄜˋ</span>
+                </div>
+                <div class="vocabulary-item" onclick="showCharacterDetail('宮', 'ㄍㄨㄥ', '宀', 10, '上下結構', this)">
+                    宮 <span class="bopomofo-small">ㄍㄨㄥ</span>
+                </div>
+                <div class="vocabulary-item" onclick="showCharacterDetail('涼', 'ㄌㄧㄤˊ', '水', 11, '左右結構', this)">
+                    涼 <span class="bopomofo-small">ㄌㄧㄤˊ</span>
+                </div>
+                <div class="vocabulary-item" onclick="showCharacterDetail('踩', 'ㄘㄞˇ', '足', 15, '左右結構', this)">
+                    踩 <span class="bopomofo-small">ㄘㄞˇ</span>
+                </div>
+                <div class="vocabulary-item" onclick="showCharacterDetail('毯', 'ㄊㄢˇ', '毛', 12, '半包圍結構', this)">
+                    毯 <span class="bopomofo-small">ㄊㄢˇ</span>
+                </div>
+                <div class="vocabulary-item" onclick="showCharacterDetail('暖', 'ㄋㄨㄢˇ', '日', 13, '左右結構', this)">
+                    暖 <span class="bopomofo-small">ㄋㄨㄢˇ</span>
+                </div>
+                <div class="vocabulary-item" onclick="showCharacterDetail('馬', 'ㄇㄚˇ', '馬', 10, '獨體字', this)">
+                    馬 <span class="bopomofo-small">ㄇㄚˇ</span>
+                </div>
+                <div class="vocabulary-item" onclick="showCharacterDetail('壞', 'ㄏㄨㄞˋ', '土', 19, '左右結構', this)">
+                    壞 <span class="bopomofo-small">ㄏㄨㄞˋ</span>
+                </div>
+                <div class="vocabulary-item" onclick="showCharacterDetail('難', 'ㄋㄢˊ', '隹', 19, '左右結構', this)">
+                    難 <span class="bopomofo-small">ㄋㄢˊ</span>
+                </div>
+                <div class="vocabulary-item" onclick="showCharacterDetail('定', 'ㄉㄧㄥˋ', '宀', 8, '上下結構', this)">
+                    定 <span class="bopomofo-small">ㄉㄧㄥˋ</span>
+                </div>
+                <div class="vocabulary-item" onclick="showCharacterDetail('更', 'ㄍㄥˋ', '曰', 7, '獨體字', this)">
+                    更 <span class="bopomofo-small">ㄍㄥˋ</span>
+                </div>
+                <div class="vocabulary-item" onclick="showCharacterDetail('隨', 'ㄙㄨㄟˊ', '阜', 16, '左右結構', this)">
+                    隨 <span class="bopomofo-small">ㄙㄨㄟˊ</span>
+                </div>
+                <div class="vocabulary-item" onclick="showCharacterDetail('主', 'ㄓㄨˇ', '丶', 5, '獨體字', this)">
+                    主 <span class="bopomofo-small">ㄓㄨˇ</span>
+                </div>
+                <div class="vocabulary-item" onclick="showCharacterDetail('法', 'ㄈㄚˇ', '水', 8, '左右結構', this)">
+                    法 <span class="bopomofo-small">ㄈㄚˇ</span>
+                </div>
+                <div class="vocabulary-item" onclick="showCharacterDetail('於', 'ㄩˊ', '方', 8, '左右結構', this)">
+                    於 <span class="bopomofo-small">ㄩˊ</span>
+                </div>
+                <div class="vocabulary-item" onclick="showCharacterDetail('舒', 'ㄕㄨ', '舌', 12, '左右結構', this)">
+                    舒 <span class="bopomofo-small">ㄕㄨ</span>
+                </div>
+            </div>
+        </section>
+        
+        <section id="character-detail" class="character-detail">
+            <div class="character-header">
+                <div class="character-large" id="char-large">赤</div>
+                <div class="character-info-basic">
+                    <h3>生字詳解</h3>
+                    <p>注音：<span id="char-bopomofo" class="bopomofo">ㄔˋ</span></p>
+                    <p>部首：<span id="char-radical">赤</span></p>
+                    <p>筆畫：<span id="char-strokes">7</span> 畫</p>
+                    <p>結構：<span id="char-structure">獨體字</span></p>
+                </div>
+            </div>
+            
+            <div class="character-info">
+                <div class="info-section">
+                    <h3><i class="fas fa-pen-nib"></i> 造詞</h3>
+                    <ul id="char-words">
+                        <li>赤腳</li>
+                        <li>赤道</li>
+                        <li>赤誠</li>
+                    </ul>
+                </div>
+                
+                <div class="info-section">
+                    <h3><i class="fas fa-book"></i> 成語</h3>
+                    <ul id="char-idioms">
+                        <li>赤子之心</li>
+                        <li>面紅耳赤</li>
+                        <li>赤手空拳</li>
+                    </ul>
+                </div>
+                
+                <div class="info-section">
+                    <h3><i class="fas fa-comment"></i> 造句</h3>
+                    <ul id="char-sentences">
+                        <li>赤腳國裡，人人都打赤腳。</li>
+                        <li>他赤著腳在沙灘上奔跑。</li>
+                    </ul>
+                </div>
+                
+                <div class="info-section">
+                    <h3><i class="fas fa-lightbulb"></i> 字義</h3>
+                    <ul id="char-meaning">
+                        <li>紅色</li>
+                        <li>忠誠、純真</li>
+                        <li>空、無</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="external-links">
+                <a href="https://pedia.cloud.edu.tw/Entry/Detail/?title=赤" class="external-link" target="_blank">教育百科</a>
+                <a href="https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=赤" class="external-link" target="_blank">成語典</a>
+            </div>
+        </section>
+        
+        <section id="similar-characters">
+            <h2><span class="section-icon">3</span> 形近字比較</h2>
+            <div class="similar-characters">
+                <div class="character-group">
+                    <h3>國 <span class="bopomofo">ㄍㄨㄛˊ</span></h3>
+                    <ul>
+                        <li>園 <span class="bopomofo">ㄩㄢˊ</span> - 花園、園丁</li>
+                        <li>圓 <span class="bopomofo">ㄩㄢˊ</span> - 圓形、圓滿</li>
+                        <li>圖 <span class="bopomofo">ㄊㄨˊ</span> - 圖畫、地圖</li>
+                    </ul>
+                </div>
+                
+                <div class="character-group">
+                    <h3>踩 <span class="bopomofo">ㄘㄞˇ</span></h3>
+                    <ul>
+                        <li>採 <span class="bopomofo">ㄘㄞˇ</span> - 採收、採草莓</li>
+                        <li>彩 <span class="bopomofo">ㄘㄞˇ</span> - 彩色、彩虹</li>
+                        <li>菜 <span class="bopomofo">ㄘㄞˋ</span> - 蔬菜、菜園</li>
+                    </ul>
+                </div>
+                
+                <div class="character-group">
+                    <h3>定 <span class="bopomofo">ㄉㄧㄥˋ</span></h3>
+                    <ul>
+                        <li>完 <span class="bopomofo">ㄨㄢˊ</span> - 完美、完整</li>
+                        <li>安 <span class="bopomofo">ㄢ</span> - 安全、安心</li>
+                        <li>是 <span class="bopomofo">ㄕˋ</span> - 是否、是非</li>
+                    </ul>
+                </div>
+                
+                <div class="character-group">
+                    <h3>主 <span class="bopomofo">ㄓㄨˇ</span></h3>
+                    <ul>
+                        <li>王 <span class="bopomofo">ㄨㄤˊ</span> - 王后、魔王</li>
+                        <li>玉 <span class="bopomofo">ㄩˋ</span> - 玉石、玉器</li>
+                        <li>住 <span class="bopomofo">ㄓㄨˋ</span> - 住家、居住</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="polyphonic-characters">
+            <h2><span class="section-icon">4</span> 多音字比較</h2>
+            <div class="polyphonic-characters">
+                <div class="character-group">
+                    <h3>難</h3>
+                    <ul>
+                        <li>難 <span class="bopomofo">ㄋㄢˊ</span> - 困難、難過</li>
+                        <li>難 <span class="bopomofo">ㄋㄢˋ</span> - 災難、責難</li>
+                    </ul>
+                </div>
+                
+                <div class="character-group">
+                    <h3>更</h3>
+                    <ul>
+                        <li>更 <span class="bopomofo">ㄍㄥ</span> - 更換、更改</li>
+                        <li>更 <span class="bopomofo">ㄍㄥˋ</span> - 更加、更好</li>
+                    </ul>
+                </div>
+                
+                <div class="character-group">
+                    <h3>和</h3>
+                    <ul>
+                        <li>和 <span class="bopomofo">ㄏㄜˊ</span> - 和平、和氣</li>
+                        <li>和 <span class="bopomofo">ㄏㄢˋ</span> - 和詩、唱和</li>
+                        <li>和 <span class="bopomofo">ㄏㄨㄛˋ</span> - 和麵、和泥</li>
+                    </ul>
+                </div>
+                
+                <div class="character-group">
+                    <h3>了</h3>
+                    <ul>
+                        <li>了 <span class="bopomofo">ㄌㄧㄠˇ</span> - 了解、了結</li>
+                        <li>了 <span class="bopomofo">˙ㄌㄜ</span> - 走了、吃了</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <a href="#" class="download-btn"><i class="fas fa-download"></i> 下載完整教學資源</a>
+    </div>
+
+    <script>
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function showCharacterDetail(character, bopomofo, radical, strokes, structure, element) {
+            // 清除所有active类
+            document.querySelectorAll('.vocabulary-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // 为当前元素添加active类
+            element.classList.add('active');
+            
+            // 更新详细内容
+            document.getElementById('char-large').textContent = character;
+            document.getElementById('char-bopomofo').textContent = bopomofo;
+            document.getElementById('char-radical').textContent = radical;
+            document.getElementById('char-strokes').textContent = strokes;
+            document.getElementById('char-structure').textContent = structure;
+            
+            // 根据不同的字显示不同的内容
+            let words, idioms, sentences, meaning;
+            
+            switch(character) {
+                case '赤':
+                    words = ['赤腳', '赤道', '赤誠'];
+                    idioms = ['赤子之心', '面紅耳赤', '赤手空拳'];
+                    sentences = ['赤腳國裡，人人都打赤腳。', '他赤著腳在沙灘上奔跑。'];
+                    meaning = ['紅色', '忠誠、純真', '空、無'];
+                    break;
+                case '國':
+                    words = ['國家', '國王', '國語'];
+                    idioms = ['國泰民安', '精忠報國', '天府之國'];
+                    sentences = ['赤腳國王住在王宮裡。', '我們要愛護自己的國家。'];
+                    meaning = ['有土地、人民、主權的團體', '屬於本國的', '地方、地域'];
+                    break;
+                case '熱':
+                    words = ['熱鬧', '熱心', '熱情'];
+                    idioms = ['熱淚盈眶', '趁熱打鐵', '滿腔熱血'];
+                    sentences = ['夏天，地面又熱又燙。', '他對學習充滿熱情。'];
+                    meaning = ['溫度高', '情感濃烈', '受人喜愛的'];
+                    break;
+                // 其他字的详细内容可以继续添加...
+                default:
+                    words = ['示例詞1', '示例詞2', '示例詞3'];
+                    idioms = ['示例成語1', '示例成語2', '示例成語3'];
+                    sentences = ['這是一個示例句子。', '這是另一個示例句子。'];
+                    meaning = ['字義解釋1', '字義解釋2', '字義解釋3'];
+            }
+            
+            // 更新列表内容
+            updateList('char-words', words);
+            updateList('char-idioms', idioms);
+            updateList('char-sentences', sentences);
+            updateList('char-meaning', meaning);
+            
+            // 显示详细内容区域
+            document.getElementById('character-detail').style.display = 'block';
+            
+            // 滚动到详细内容区域
+            document.getElementById('character-detail').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function updateList(elementId, items) {
+            const listElement = document.getElementById(elementId);
+            listElement.innerHTML = '';
+            
+            items.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                listElement.appendChild(li);
+            });
+        }
+        
+        // 默认显示"赤"的详细内容
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstCharElement = document.querySelector('.vocabulary-item');
+            if (firstCharElement) {
+                showCharacterDetail('赤', 'ㄔˋ', '赤', 7, '獨體字', firstCharElement);
+            }
+        });
+    </script>
+</body>
+</html>
